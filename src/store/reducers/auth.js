@@ -20,6 +20,7 @@ function reducer(state = initialState, action) {
                 ...state,
                 idToken: action.idToken,
                 userId: action.userId,
+                email: action.email,
                 error: null,
                 loading: false
             }
@@ -40,6 +41,11 @@ function reducer(state = initialState, action) {
                 ...state,
                 idToken: action.idToken,
                 userId: action.userId
+            }
+        case actionTypes.AUTH_PULL_USERDATA_TO_STORE:
+            return {
+                ...state,
+                userData: action.userData
             }
         default:
             return state;
