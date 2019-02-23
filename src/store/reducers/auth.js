@@ -20,7 +20,6 @@ function reducer(state = initialState, action) {
                 ...state,
                 idToken: action.idToken,
                 userId: action.userId,
-                email: action.email,
                 error: null,
                 loading: false
             }

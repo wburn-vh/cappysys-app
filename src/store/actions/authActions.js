@@ -7,12 +7,11 @@ export const authStart = () => {
     }
 }
 
-export const authSuccess = (idToken, userId, email) => {
+export const authSuccess = (idToken, userId) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         idToken: idToken,
-        userId: userId,
-        email: email
+        userId: userId
     }
 }
 
@@ -41,19 +40,17 @@ export const getUserData = (userId) => {
     return dispatch => {
         axios.get('https://cappy-sys.firebaseio.com/Users/' + userId + '.json')
             .then(response => {
-                console.log(userId)
-                console.log(response.data);
                 dispatch(pullDataToStore(response.data))
             })
             .catch(err => console.log(err));
     }
 }
 
-export const autoAuth = (idToken, userId, email) => {
+export const autoAuth = (idToken, userId) => {
     return dispatch => {
         dispatch(authStart());
-        dispatch(authSuccess(idToken, userId, email));
         dispatch(getUserData(userId));
+        dispatch(authSuccess(idToken, userId));
     }
 }
 
@@ -67,18 +64,15 @@ export const auth = (email, password) => {
         }
         axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyBb-g7QW3rnYPsNDrFsxd3ozcIL5txyFXk', authData)
             .then(response => {
-                console.log(response);
+                dispatch(getUserData(
+                    response.data.localId));
+                    localStorage.setItem('idToken', response.data.idToken);
+                    localStorage.setItem('userId', response.data.localId);
                 dispatch(authSuccess(
                     response.data.idToken,
-                    response.data.localId,
-                    response.data.email));
-                localStorage.setItem('idToken', response.data.idToken);
-                localStorage.setItem('userId', response.data.localId);
-                localStorage.setItem('email', response.data.email);
-                dispatch(getUserData(response.data.localId));
+                    response.data.localId));
             })
             .catch(err => {
-                // console.log(err);
                 dispatch(authFail(err.response.data.error));
             })
     }
