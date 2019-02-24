@@ -3,31 +3,27 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
     idToken: null,
     userId: null,
-    error: null,
-    loading: false
+    error: null
 };
 
-function reducer(state = initialState, action) {
+function authReducer(state = initialState, action) {
     switch (action.type) {
         case actionTypes.AUTH_START:
             return {
                 ...state,
-                error: null,
-                loading: true
+                error: null
             }
         case actionTypes.AUTH_SUCCESS:
             return {
                 ...state,
                 idToken: action.idToken,
                 userId: action.userId,
-                error: null,
-                loading: false
+                error: null
             }
         case actionTypes.AUTH_FAIL:
             return {
                 ...state,
-                error: action.error.message,
-                loading: false
+                error: action.error.message
             }
         case actionTypes.AUTH_LOGOUT:
             return {
@@ -35,20 +31,9 @@ function reducer(state = initialState, action) {
                 idToken: null,
                 userId: null
             }
-        case actionTypes.AUTH_AUTO_LOG_IN:
-            return {
-                ...state,
-                idToken: action.idToken,
-                userId: action.userId
-            }
-        case actionTypes.AUTH_PULL_USERDATA_TO_STORE:
-            return {
-                ...state,
-                userData: action.userData
-            }
         default:
             return state;
     }
 };
 
-export default reducer;
+export default authReducer;

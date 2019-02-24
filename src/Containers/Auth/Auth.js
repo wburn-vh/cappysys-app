@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import './Auth.scss';
 import Logo from '../../Components/Logo/Logo';
-import * as actions from '../../store/actions/authActions';
+import * as authActions from '../../store/actions/authActions';
 
 class Auth extends Component {
     state = {
@@ -12,10 +12,9 @@ class Auth extends Component {
     }
 
     componentDidMount() {
-        if (localStorage.getItem('idToken')) {
+        if (localStorage.getItem('idToken') && localStorage.getItem('userId')) {
             this.props.autoAuth(
-                localStorage.getItem('idToken'),
-                localStorage.getItem('userId')
+                localStorage.getItem('idToken'), localStorage.getItem('userId')
             )
         }
     }
@@ -42,8 +41,17 @@ class Auth extends Component {
             <div className="Auth">
                 <Logo isError={this.props.error} />
                 <form onSubmit={this.submitHandler}>
-                    <input type='email' placeholder='e-mail' onChange={this.emailHandler} required autoComplete='true' />
-                    <input type='password' placeholder='password' onChange={this.passwordHandler} required autoComplete='true' />
+                    <input 
+                        type='email'
+                        placeholder='e-mail'
+                        onChange={this.emailHandler}
+                        required
+                        autoComplete='on' />
+                    <input type='password'
+                        placeholder='password'
+                        onChange={this.passwordHandler}
+                        required
+                        autoComplete='on' />
                     <button>sign in</button>
                 </form>
             </div>
@@ -60,8 +68,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password) => dispatch(actions.auth(email, password)),
-        autoAuth: (idToken, userId) => dispatch(actions.autoAuth(idToken, userId))
+        onAuth: (email, password) => dispatch(authActions.auth(email, password)),
+        autoAuth: (idToken, userId) => dispatch(authActions.autoAuth(idToken, userId))
     }
 }
 

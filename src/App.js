@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import Auth from './Containers/Auth/Auth';
 import User from './Containers/User/User';
-// import Page404 from './Containers/Page404/Page404';
 import './App.scss';
 
 class App extends Component {
@@ -21,15 +20,15 @@ class App extends Component {
         );
 
         if (this.props.idToken && this.props.userData) {
-            let userPath = this.props.userData.email.slice(0, this.props.userData.email.indexOf('@'));
-
-            if (this.props.userData.isAuthenticated) {
-                userPath = this.props.userData.nickname
+            let userPath = this.props.userData.nickname
+            
+            if (this.props.userData.isFirstEnter) {
+                userPath = this.props.userData.email.slice(0, this.props.userData.email.indexOf('@'))
             }
 
             routes = (
                 <Switch>
-                    <Route
+                    <Route 
                         exact
                         path={'/' + userPath}
                         component={User} />
@@ -54,7 +53,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
     return {
         idToken: state.auth.idToken,
-        userData: state.auth.userData
+        userData: state.user.userData
     }
 }
 

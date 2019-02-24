@@ -2,5 +2,5 @@ export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
-export const AUTH_AUTO_LOG_IN = 'AUTH_AUTO_LOG_IN';
-export const AUTH_PULL_USERDATA_TO_STORE = 'AUTH_PULL_USERDATA_TO_STORE';
+
+export const USER_DATA_REQUEST = 'USER_DATA_REQUEST';
