@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Auth from './Containers/Auth/Auth';
 import User from './Containers/User/User';
+import Page404 from './Containers/Page404/Page404';
 import './App.scss';
 
 class App extends Component {
@@ -16,6 +17,8 @@ class App extends Component {
                     component={Auth} />
                 <Redirect
                     to='/login' />
+                <Route 
+                    component={Page404} />
             </Switch>
         );
 
