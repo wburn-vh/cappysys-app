@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './Auth.scss';
-import Logo from '../../Components/Logo/Logo';
+// import Logo from '../../Components/Logo/Logo';
 import * as authActions from '../../store/actions/authActions';
 
 class Auth extends Component {
@@ -39,19 +39,26 @@ class Auth extends Component {
     render() {
         return (
             <div className="Auth">
-                <Logo isError={this.props.error} />
+                {/* <Logo isError={this.props.error} /> */}
                 <form onSubmit={this.submitHandler}>
-                    <input 
-                        type='email'
-                        placeholder='e-mail'
-                        onChange={this.emailHandler}
-                        required
-                        autoComplete='on' />
-                    <input type='password'
-                        placeholder='password'
-                        onChange={this.passwordHandler}
-                        required
-                        autoComplete='on' />
+                    <div className="Auth__input">
+                        <input 
+                            type='text'
+                            onChange={this.emailHandler}
+                            required
+                            autoComplete='on' />
+                        <span className='Auth__bar'></span>
+                        <label>email</label>
+                    </div>
+                    <div className="Auth__input">
+                        <input 
+                            type='password'
+                            onChange={this.passwordHandler}
+                            required
+                            autoComplete='on' />
+                        <span className='Auth__bar' />
+                        <label>password</label>
+                    </div>
                     <button>sign in</button>
                 </form>
             </div>
