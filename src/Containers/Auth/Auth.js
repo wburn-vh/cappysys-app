@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './Auth.scss';
-// import Logo from '../../Components/Logo/Logo';
+import Logo from '../../Components/Logo/Logo';
 import * as authActions from '../../store/actions/authActions';
 
 class Auth extends Component {
@@ -39,16 +39,20 @@ class Auth extends Component {
     render() {
         return (
             <div className="Auth">
-                {/* <Logo isError={this.props.error} /> */}
+                <Logo isError={this.props.error} />
                 <form onSubmit={this.submitHandler}>
                     <div className="Auth__input">
                         <input 
-                            type='text'
+                            type='email'
                             onChange={this.emailHandler}
                             required
                             autoComplete='on' />
                         <span className='Auth__bar'></span>
-                        <label>email</label>
+                        {
+                            this.state.email === '' ? 
+                                <label>e-mail</label> : 
+                                <label style={{top: '-1rem', fontSize: '1.2rem'}}>e-mail</label>
+                        }
                     </div>
                     <div className="Auth__input">
                         <input 
@@ -57,9 +61,14 @@ class Auth extends Component {
                             required
                             autoComplete='on' />
                         <span className='Auth__bar' />
-                        <label>password</label>
+                        {
+                            this.state.password === '' ? 
+                                <label>password</label> : 
+                                <label style={{top: '-1rem', fontSize: '1.2rem'}}>password</label>
+                        }
                     </div>
                     <button>sign in</button>
+                    <div className="Auth__btn-bg" />
                 </form>
             </div>
         )

@@ -1,113 +1,50 @@
 @import '../../scss/variables.scss';
 
 .Logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 15rem;
-    width: 15rem;
-    background: $color-wine;
-    border-radius: 50%;
     position: relative;
-    transition: all 1.5s;
 
     img {
-        width: 70%;
-        height: 70%;
-        opacity: .7;
-        // animation: Logo-hide 10s forwards;
+        height: 10rem;
+        width: auto;
     }
 
-    &__message {
+    &__error-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 1rem;
         display: flex;
         justify-content: center;
         align-items: center;
-        background: $color-wine;
-        position: absolute;
-        height: 15rem;
-        width: 15rem;
-        border-radius: 50%;
-        opacity: 0;
-        // animation: Logo-show-message 10s forwards;
-        color: $color-baby-powder;
-        font-size: 1.6rem;
-        font-weight: 300;
-        transition: all 1.5s;
+        background: $color-baby-powder;
+        width: 17rem;
+        height: 3rem;
+        font-size: 1.5rem;
+        font-weight: 200;
+        transition: all .3s;
+        color: $color-arsenic;
+        
+        &-hide {
+            opacity: 0;
+        }
 
-        &:hover {
-            background: $color-smoky-topaz;
+        &-show {
+            opacity: 1;
+        }
+
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 1.6rem;
+            height: 1.6rem;
+            // background: red;
+            border: transparent solid .8rem;
+            border-left: solid .8rem $color-baby-powder;
+            border-top: solid .8rem $color-baby-powder;
+            top: -0.8rem;
+            left: 3rem;
+            transform: rotate(45deg);
         }
     }
-
-    &:hover {
-        background: $color-smoky-topaz;
-        box-shadow: 0.2rem 0.8rem 1.5rem rgba(0, 0, 0, 0.35);
-    }
-}
-
-.Logo-capybara-hide {
-    animation: Logo-hide 10s forwards;
-}
-
-.Logo-text-show {
-    animation: Logo-show-message 10s forwards;
-}
-
-@keyframes Logo-hide {
-  0% {
-    opacity: 1;
-  }
-
-  5% {
-    filter: blur(10px);
-  }
-
-  10%,
-  90% {
-    opacity: 0;
-    filter: blur(20px);
-    transform: rotate(-360deg);
-  }
-
-  95%{
-    filter: blur(10px);
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes Logo-show-message {
-  0% {
-    opacity: 0;
-    filter: blur(20px);
-  }
-
-  5% {
-    filter: blur(10px);
-  }
-
-  9% {
-    filter: blur(0px);
-  }
-
-  10%,
-  90% {
-    opacity: 1;
-    transform: rotate(360deg);
-  }
-
-  91% {
-    filter: blur(0px);
-  }
-
-  95%{
-    filter: blur(10px);
-  }
-
-  100% {
-    opacity: 0;
-    filter: blur(20px);
-  }
 }

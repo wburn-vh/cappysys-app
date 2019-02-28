@@ -1,5 +1,7 @@
 @import '../../scss/variables.scss';
 
+$animation-time: 0.3s;
+
 .Auth {
     display: flex;
     flex-direction: column;
@@ -7,6 +9,10 @@
     align-items: center;
     height: 100vh;
     width: 100vw;
+
+    form {
+        position: relative;
+    }
 
     &__input {
         position: relative;
@@ -18,7 +24,7 @@
             font-size: 1.8rem;
             font-weight: 200;
             -webkit-appearance: none;
-            -webkit-border-radius:0px;
+            -webkit-border-radius: 0px;
             color: $color-baby-powder;
             padding: 1rem;
             display: block;
@@ -33,8 +39,7 @@
                 outline: none;
             }
 
-            &:focus ~ label,
-            &:valid ~ label {
+            &:focus ~ label {
                 top: -1rem;
                 font-size: 1.2rem;
             }
@@ -54,28 +59,28 @@
             pointer-events: none;
             left: 1rem;
             top: 1.3rem;
-            transition: 0.2s ease all;
-            -moz-transition: 0.2s ease all;
-            -webkit-transition: 0.2s ease all;
+            transition: $animation-time ease all;
+            -moz-transition: $animation-time ease all;
+            -webkit-transition: $animation-time ease all;
         }
     }
 
     &__bar {
         position: relative;
         display: block;
-        width: 27rem;
+        width: 25rem;
 
         &:before, 
         &:after {
             content: '';
-            height: 2px;
+            height: 1px;
             width: 0;
             bottom: 0;
             position: absolute;
             background: $color-smoky-topaz;
-            transition: 0.2s ease all;
-            -moz-transition: 0.2s ease all;
-            -webkit-transition: 0.2s ease all;
+            transition: $animation-time ease all;
+            -moz-transition: $animation-time ease all;
+            -webkit-transition: $animation-time ease all;
         }
 
         &:before {
@@ -86,19 +91,47 @@
             right: 50%;
         }
     }
-    
+
     button {
-        width: 100%;
-        border: none;
-        margin-top: 2rem;
+        display: block;
+        background: transparent;
+        width: 25rem;
         height: 4.5rem;
+        margin-top: 2rem;
+        border: 1px solid $color-baby-powder;
         font-size: 2rem;
         text-transform: uppercase;
-        font-weight: 300;
+        font-weight: 200;
         user-select: none;
         outline: none;
         cursor: pointer;
-        background: $color-smoky-topaz;
         color: $color-baby-powder;
+        position: relative;
+        z-index: 1;
+        transition: $animation-time ease all;
+        -moz-transition: $animation-time ease all;
+        -webkit-transition: $animation-time ease all;
+
+        &:hover ~ .Auth__btn-bg {
+            width: 25rem;
+        }
+
+        &:hover {
+            border: 1px solid $color-smoky-topaz;
+        }
+    }
+
+    &__btn-bg {
+        width: 0rem;
+        height: 4.5rem;
+        background: $color-smoky-topaz;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 0;
+        transition: $animation-time ease all;
+        -moz-transition: $animation-time ease all;
+        -webkit-transition: $animation-time ease all;
     }
 }
